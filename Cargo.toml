@@ -19,4 +19,4 @@ path = "src/sqb_yaml/main.rs"
 byteorder = "1.3.2"
 hash40 = "0.1.0"
 serde = { version = "1.0.98", features = ["derive"] }
-indexmap = "1.2.0"
+serde_yaml = "0.8"

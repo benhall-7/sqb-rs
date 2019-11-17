@@ -2,23 +2,27 @@ mod asm;
 mod disasm;
 
 use hash40::{Hash40};
+use serde::{Serialize, Deserialize};
 use std::io::{Cursor, Error, Read, Write, Seek};
 use std::fs::{read, write};
 use std::path::Path;
 
 const MAGIC: &[u8; 4] = b"SQB\x00";
 
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SequenceBank {
     pub unk: u16, // version number?
     pub sequences: Vec<Sequence>,
 }
 
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Sequence {
     pub id: Hash40,
     pub unk: u16,
     pub sounds: Vec<Sound>,
 }
 
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Sound {
     pub id: Hash40,
     pub unk1: u16,
