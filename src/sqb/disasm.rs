@@ -44,8 +44,8 @@ fn read_sound<C: Read + Seek>(reader: &mut C) -> Result<Sound, Error> {
     let id = reader.read_hash40::<LittleEndian>()?;
     let unk1 = reader.read_u16::<LittleEndian>()?;
     let prob = reader.read_u16::<LittleEndian>()?;
-    let unk2 = reader.read_u16::<LittleEndian>()?;
-    let unk3 = reader.read_u16::<LittleEndian>()?;
+    let unk2 = reader.read_i16::<LittleEndian>()?;
+    let unk3 = reader.read_i16::<LittleEndian>()?;
     let unk4 = reader.read_u32::<LittleEndian>()?;
     Ok(Sound {
         id,
