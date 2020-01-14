@@ -28,7 +28,7 @@ pub fn assemble<C: Write + Seek>(writer: &mut C, sqb: &SequenceBank) -> Result<(
 }
 
 pub fn write_sequence<C: Write + Seek>(writer: &mut C, seq: &Sequence) -> Result<(), Error> {
-    writer.write_hash40::<LittleEndian>(&seq.id)?;
+    writer.write_hash40::<LittleEndian>(seq.id)?;
     writer.write_u16::<LittleEndian>(seq.unk)?;
     writer.write_u16::<LittleEndian>(seq.sounds.len() as u16)?;
     writer.write_u32::<LittleEndian>(0)?; // padding
@@ -39,7 +39,7 @@ pub fn write_sequence<C: Write + Seek>(writer: &mut C, seq: &Sequence) -> Result
 }
 
 pub fn write_sound<C: Write + Seek>(writer: &mut C, sound: &Sound) -> Result<(), Error> {
-    writer.write_hash40::<LittleEndian>(&sound.id)?;
+    writer.write_hash40::<LittleEndian>(sound.id)?;
     writer.write_u16::<LittleEndian>(sound.unk1)?;
     writer.write_u16::<LittleEndian>(sound.prob)?;
     writer.write_i16::<LittleEndian>(sound.unk2)?;

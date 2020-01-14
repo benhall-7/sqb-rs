@@ -2,7 +2,6 @@ mod args;
 
 use args::*;
 use sqb;
-use hash40::load_labels;
 use serde_yaml::{to_string, from_str};
 use structopt::StructOpt;
 use std::fs::File;
@@ -13,9 +12,12 @@ fn main() {
     let args = Args::from_args();
     
     if let Some(ref label_path) = args.label {
-        if let Err(e) = load_labels(label_path) {
-            println!("Error loading labels: {}", e);
-            return;
+        match hash40::read_labels(label_path) {
+            Ok(labels) => hash40::set_labels(labels),
+            Err(e) => {
+                println!("Error loading labels: {}", e);
+                return
+            },
         }
     }
 
