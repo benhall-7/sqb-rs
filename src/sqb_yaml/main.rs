@@ -14,11 +14,11 @@ fn main() {
 
     if let Some(ref label_path) = args.label {
         match read_labels(label_path) {
-            Ok(l) => set_labels(l),
+            Ok(labels) => set_labels(labels),
             Err(e) => {
                 println!("Error loading labels: {}", e);
-                return;
-            }
+                return
+            },
         }
     }
 
