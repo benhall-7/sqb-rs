@@ -1,11 +1,13 @@
 mod asm;
 mod disasm;
 
-use hash40::{Hash40};
-use serde::{Serialize, Deserialize};
-use std::io::{Cursor, Error, Read, Write, Seek};
+use hash40::Hash40;
+use serde::{Deserialize, Serialize};
 use std::fs::{read, write};
+use std::io::{Cursor, Error, Read, Seek, Write};
 use std::path::Path;
+
+pub use hash40;
 
 const MAGIC: &[u8; 4] = b"SQB\x00";
 

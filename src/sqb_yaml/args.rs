@@ -4,7 +4,7 @@ use structopt::StructOpt;
 pub struct Args {
     #[structopt(subcommand)]
     pub mode: Mode,
-    
+
     #[structopt(long, short, global(true))]
     pub label: Option<String>,
 
@@ -15,12 +15,8 @@ pub struct Args {
 #[derive(StructOpt)]
 pub enum Mode {
     #[structopt(about = "Convert from sqb to yaml")]
-    Disasm {
-        file: String,
-    },
+    Disasm { file: String },
 
     #[structopt(about = "Convert from yaml to sqb")]
-    Asm {
-        file: String,
-    },
+    Asm { file: String },
 }

@@ -1,6 +1,6 @@
 use crate::{Sequence, SequenceBank, Sound, MAGIC};
 use byteorder::{LittleEndian, ReadBytesExt};
-use hash40::{ReadHash40};
+use hash40::ReadHash40;
 use std::io::{Error, ErrorKind, Read, Seek, SeekFrom};
 
 pub fn disassemble<C: Read + Seek>(reader: &mut C) -> Result<SequenceBank, Error> {
@@ -32,7 +32,7 @@ fn read_seq<C: Read + Seek>(reader: &mut C) -> Result<Sequence, Error> {
     let id = reader.read_hash40::<LittleEndian>()?;
     let unk = reader.read_u16::<LittleEndian>()?;
     let count = reader.read_u16::<LittleEndian>()?;
-    reader.read_u32::<LittleEndian>()?;//padding;
+    reader.read_u32::<LittleEndian>()?; //padding;
 
     let sounds = (0..count)
         .map(|_| read_sound(reader))
